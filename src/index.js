@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Index from './pages/index';
+import PrefNames from './pages/prefnames';
 
-ReactDOM.render(<Index />, document.querySelector('#root'));
+ReactDOM.render(<PrefNames />, document.querySelector('#root'));

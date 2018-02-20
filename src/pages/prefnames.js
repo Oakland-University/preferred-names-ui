@@ -72,7 +72,7 @@ NamesTable.propTypes = {
 };
 
 
-class Index extends React.Component {
+class PrefNames extends React.Component {
   state = {
     open: false,
   };
@@ -101,8 +101,8 @@ class Index extends React.Component {
   }
 }
 
-Index.propTypes = {
+PrefNames.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Index));
+export default withRoot(withStyles(styles)(PrefNames));
