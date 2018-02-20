@@ -1,108 +1,102 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from 'material-ui/Dialog';
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from 'material-ui/Table';
-import Typography from 'material-ui/Typography';
+import ListSubheader from 'material-ui/List/ListSubheader'
+import List, {
+  ListItem,
+  ListItemAvatar,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemText,
+} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import IconButton from 'material-ui/IconButton';
+import InfoIcon from 'material-ui-icons/Info';
+import PersonIcon from 'material-ui-icons/Person';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../withRoot';
 
 const styles = theme => ({
   root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 5,
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
+    maxHeight: 480
+  },
+  listSection: {
+    backgroundColor: 'inherit',
+  },
+  ul: {
+    backgroundColor: 'inherit',
+    padding: 0,
   },
 });
 
-let cellId = 0;
-function createData(studentId, prefNameOld, prefNameNew, date) {
-  cellId += 1;
-  return { cellId, studentId, prefNameOld, prefNameNew, date };
-}
-
-const data = [
-  createData('123', 'Michael', 'Mike', '01-01-2018'),
-  createData('456', 'Anderson', 'Andy', '01-01-2018'),
-  createData('789', 'James', 'Jim', '01-01-2018'),
-  createData('012', 'Pamela', 'Pam', '01-01-2018'),
-]
-
-function NamesTable(props) {
+function PrefNames(props) {
   const { classes } = props;
 
-  return (
-    <Table>
-      <caption>Modified Preferred Names</caption>
-      <TableHead>
-        <TableRow>
-          <TableCell style={{color: 'black'}}>Student ID</TableCell>
-          <TableCell style={{color: 'black'}}>Old Preferred Name</TableCell>
-          <TableCell style={{color: 'black'}}>New Preferred Name</TableCell>
-          <TableCell style={{color: 'black'}}>Date Modified</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {data.map(n => {
-          return (
-            <TableRow key={n.cellId}>
-              <TableCell>{n.studentId}</TableCell>
-              <TableCell>{n.prefNameOld}</TableCell>
-              <TableCell><strong>{n.prefNameNew}</strong></TableCell>
-              <TableCell>{n.date}</TableCell>
-            </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
-  );
-}
-
-NamesTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-
-class PrefNames extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <NamesTable />
-      </div>
-    );
+  let item = 0;
+  function addPerson(Id, oldName, newName, dateChanged) {
+    item += 1;
+    return { item, Id, oldName, newName, dateChanged };
   }
+
+  const people = [
+    addPerson('123', 'Michael', 'Mike', 'Jan 1, 2018'),
+    addPerson('456', 'Anderson', 'Andy', 'Jan 2, 2018'),
+    addPerson('789', 'James', 'Jim', 'Jan 2, 2018'),
+    addPerson('012', 'Pamela', 'Pam', 'Jan 4, 2018'),
+  ]
+
+  var dates = [];
+
+  function addDateHeader(newDate) {
+    if (!dates.includes(newDate)) {
+      dates.push(newDate);
+    }
+  }
+
+  for (var i = 0; i < people.length; i++) {
+    addDateHeader(people[i].dateChanged);
+  }
+
+  function PersonListItems(props) {
+    return (
+      people.map(person => (
+        <ListItem key={person}>
+          <ListItemAvatar>
+            <Avatar>
+              <PersonIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={person.newName}
+            secondary={"Previously " + person.oldName} />
+          <ListItemSecondaryAction>
+            <IconButton aria-label="View personal info">
+              <InfoIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))
+    )
+  }
+
+  return (
+    <List className={classes.root} subheader={<li />}>
+      {dates.map(sectionId => (
+        <li key={sectionId} className={classes.listSection}>
+          <ul className={classes.ul}>
+            <ListSubheader>{sectionId}</ListSubheader>
+            <PersonListItems />
+          </ul>
+        </li>
+      ))}
+    </List>
+  );
 }
 
 PrefNames.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(PrefNames));
+export default withStyles(styles)(PrefNames);
