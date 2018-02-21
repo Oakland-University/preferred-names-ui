@@ -9,8 +9,6 @@ import List, {
   ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import IconButton from 'material-ui/IconButton';
-import InfoIcon from 'material-ui-icons/Info';
 import PersonIcon from 'material-ui-icons/Person';
 import { withStyles } from 'material-ui/styles';
 
@@ -71,11 +69,6 @@ function PrefNames(props) {
           <ListItemText
             primary={person.newName}
             secondary={"Previously " + person.oldName} />
-          <ListItemSecondaryAction>
-            <IconButton aria-label="View personal info">
-              <InfoIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
         </ListItem>
       ))
     )
