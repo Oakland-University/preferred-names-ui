@@ -30,58 +30,74 @@ const styles = theme => ({
 function PrefNames(props) {
   const { classes } = props;
 
-  let item = 0;
-  function addPerson(Id, oldName, newName, dateChanged) {
-    item += 1;
-    return { item, Id, oldName, newName, dateChanged };
+  // Mock JSON
+  var mockJson = {
+    "dates": [
+      {
+        "string": "Jan 04, 2018",
+        "people": [
+          {
+            "pidm": "00000",
+            "prefFirstName": "Mike",
+            "firstName": "Michael",
+            "lastName": "Scott"
+          },
+          {
+            "pidm": "11111",
+            "prefFirstName": "Andy",
+            "firstName": "Anderson",
+            "lastName": "Bernard"
+          }
+        ]
+      },
+      {
+        "string": "Jan 02, 2018",
+        "people": [
+          {
+            "pidm": "22222",
+            "prefFirstName": "Pam",
+            "firstName": "Pamela",
+            "lastName": "Beesly"
+          }
+        ]
+      },
+      {
+        "string": "Jan 01, 2018",
+        "people": [
+          {
+            "pidm": "33333",
+            "prefFirstName": "Jim",
+            "firstName": "James",
+            "lastName": "Halpert"
+          }
+        ]
+      }
+    ]
   }
 
-  const people = [
-    addPerson('123', 'Michael', 'Mike', 'Jan 1, 2018'),
-    addPerson('456', 'Anderson', 'Andy', 'Jan 2, 2018'),
-    addPerson('789', 'James', 'Jim', 'Jan 2, 2018'),
-    addPerson('012', 'Pamela', 'Pam', 'Jan 4, 2018'),
-  ]
-
-  var dates = [];
-
-  function addDateHeader(newDate) {
-    if (!dates.includes(newDate)) {
-      dates.push(newDate);
-    }
-  }
-
-  for (var i = 0; i < people.length; i++) {
-    addDateHeader(people[i].dateChanged);
-  }
-
-  function PersonListItems(props) {
-    return (
-      people.map(person => (
-        <ListItem key={person}>
+  function renderListItem() {
+      return (
+        <ListItem>
           <ListItemAvatar>
             <Avatar>
               <PersonIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={person.newName}
-            secondary={"Previously " + person.oldName} />
+            primary={"Preferred Name"}
+            secondary={"Firstname Lastname"} />
         </ListItem>
-      ))
-    )
+      )
   }
 
   return (
     <List className={classes.root} subheader={<li />}>
-      {dates.map(sectionId => (
-        <li key={sectionId} className={classes.listSection}>
+        <li className={classes.listSection}>
           <ul className={classes.ul}>
-            <ListSubheader>{sectionId}</ListSubheader>
-            <PersonListItems />
+            <ListSubheader>{"Date"}</ListSubheader>
+            {renderListItem()}
           </ul>
         </li>
-      ))}
     </List>
   );
 }
