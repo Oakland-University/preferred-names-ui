@@ -4,8 +4,6 @@ import ListSubheader from 'material-ui/List/ListSubheader'
 import List, {
   ListItem,
   ListItemAvatar,
-  ListItemIcon,
-  ListItemSecondaryAction,
   ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
