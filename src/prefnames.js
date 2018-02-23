@@ -75,9 +75,9 @@ function PrefNames(props) {
     ]
   }
 
-  function renderPerson(person) {
+  function renderPerson(person, index) {
     return (
-      <ListItem>
+      <ListItem key={index}>
         <ListItemAvatar>
           <Avatar>
             <PersonIcon />
@@ -95,9 +95,9 @@ function PrefNames(props) {
     <List className={classes.root} subheader={<li />}>
       <li className={classes.listSection}>
         {mockJson.dates.map((date, index) => (
-          <ul className={classes.ul}>
+          <ul key={index} className={classes.ul}>
             <ListSubheader>{date.string}</ListSubheader>
-            {date.people.map((person, index) => renderPerson(person))}
+            {date.people.map((person, index) => renderPerson(person, index))}
           </ul>
         ))}
       </li>
