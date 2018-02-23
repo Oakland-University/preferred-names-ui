@@ -75,29 +75,32 @@ function PrefNames(props) {
     ]
   }
 
-  function renderListItem() {
-      return (
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <PersonIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={"Preferred Name"}
-            secondary={"Firstname Lastname"} />
-        </ListItem>
-      )
+  function renderPerson(person) {
+    return (
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <PersonIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={person.prefFirstName}
+          secondary={person.firstName + " " + person.lastName}
+        />
+      </ListItem>
+    )
   }
 
   return (
     <List className={classes.root} subheader={<li />}>
-        <li className={classes.listSection}>
+      <li className={classes.listSection}>
+        {mockJson.dates.map((date, index) => (
           <ul className={classes.ul}>
-            <ListSubheader>{"Date"}</ListSubheader>
-            {renderListItem()}
+            <ListSubheader>{date.string}</ListSubheader>
+            {date.people.map((person, index) => renderPerson(person))}
           </ul>
-        </li>
+        ))}
+      </li>
     </List>
   );
 }
