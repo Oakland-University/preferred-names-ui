@@ -37,13 +37,11 @@ function PrefNames(props) {
         "string": "Jan 04, 2018",
         "people": [
           {
-            "pidm": "00000",
             "prefFirstName": "Mike",
             "firstName": "Michael",
             "lastName": "Scott"
           },
           {
-            "pidm": "11111",
             "prefFirstName": "Andy",
             "firstName": "Anderson",
             "lastName": "Bernard"
@@ -54,7 +52,6 @@ function PrefNames(props) {
         "string": "Jan 02, 2018",
         "people": [
           {
-            "pidm": "22222",
             "prefFirstName": "Pam",
             "firstName": "Pamela",
             "lastName": "Beesly"
@@ -65,7 +62,6 @@ function PrefNames(props) {
         "string": "Jan 01, 2018",
         "people": [
           {
-            "pidm": "33333",
             "prefFirstName": "Jim",
             "firstName": "James",
             "lastName": "Halpert"
