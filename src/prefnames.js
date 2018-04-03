@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListSubheader from 'material-ui/List/ListSubheader'
 import List, {
   ListItem,
   ListItemAvatar,
@@ -31,45 +30,32 @@ function PrefNames(props) {
   const { classes } = props;
 
   // Mock JSON
-  var mockJson = {
-    "dates": [
-      {
-        "string": "Jan 04, 2018",
-        "people": [
-          {
-            "prefFirstName": "Mike",
-            "firstName": "Michael",
-            "lastName": "Scott"
-          },
-          {
-            "prefFirstName": "Andy",
-            "firstName": "Anderson",
-            "lastName": "Bernard"
-          }
-        ]
-      },
-      {
-        "string": "Jan 02, 2018",
-        "people": [
-          {
-            "prefFirstName": "Pam",
-            "firstName": "Pamela",
-            "lastName": "Beesly"
-          }
-        ]
-      },
-      {
-        "string": "Jan 01, 2018",
-        "people": [
-          {
-            "prefFirstName": "Jim",
-            "firstName": "James",
-            "lastName": "Halpert"
-          }
-        ]
-      }
-    ]
-  }
+  var mockJson = [
+    {
+      "prefFirstName":"Mike",
+      "firstName":"Michael",
+      "lastName":"Scott",
+      "dateModified":"January 04, 2018"
+    },
+    {
+      "prefFirstName":"Andy",
+      "firstName":"Anderson",
+      "lastName":"Bernard",
+      "dateModified":"January 02, 2018"
+    },
+    {
+      "prefFirstName":"Pam",
+      "firstName":"Pamela",
+      "lastName":"Beesly",
+      "dateModified":"January 02, 2018"
+    },
+    {
+      "prefFirstName":"Jim",
+      "firstName":"James",
+      "lastName":"Halpert",
+      "dateModified":"January 01, 2018"
+    }
+  ]
 
   function renderPerson(person, index) {
     return (
@@ -80,8 +66,8 @@ function PrefNames(props) {
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary={person.prefFirstName}
-          secondary={person.firstName + " " + person.lastName}
+          primary={<span><strong>{person.prefFirstName}</strong></span>}
+          secondary={<span>Entered on {person.dateModified} by <strong>{person.firstName} {person.lastName}</strong></span>}
         />
       </ListItem>
     )
@@ -90,10 +76,9 @@ function PrefNames(props) {
   return (
     <List className={classes.root} subheader={<li />}>
       <li className={classes.listSection}>
-        {mockJson.dates.map((date, index) => (
+        {mockJson.map((person, index) => (
           <ul key={index} className={classes.ul}>
-            <ListSubheader>{date.string}</ListSubheader>
-            {date.people.map((person, index) => renderPerson(person, index))}
+            {renderPerson(person, index)}
           </ul>
         ))}
       </li>
