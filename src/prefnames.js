@@ -11,17 +11,9 @@ import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-    position: 'relative',
-    overflow: 'auto',
     maxHeight: 480
   },
-  listSection: {
-    backgroundColor: 'inherit',
-  },
   ul: {
-    backgroundColor: 'inherit',
     padding: 0,
   },
 });
@@ -75,7 +67,7 @@ function PrefNames(props) {
 
   return (
     <List className={classes.root} subheader={<li />}>
-      <li className={classes.listSection}>
+      <li>
         {mockJson.map((person, index) => (
           <ul key={index} className={classes.ul}>
             {renderPerson(person, index)}
