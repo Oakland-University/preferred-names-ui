@@ -12,10 +12,7 @@ import { withStyles } from 'material-ui/styles';
 const styles = theme => ({
   root: {
     maxHeight: 480
-  },
-  ul: {
-    padding: 0,
-  },
+  }
 });
 
 function PrefNames(props) {
@@ -49,31 +46,27 @@ function PrefNames(props) {
     }
   ]
 
-  function renderPerson(person, index) {
+  function renderListItemText(person) {
     return (
-      <ListItem key={index}>
-        <ListItemAvatar>
-          <Avatar>
-            <PersonIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={<span><strong>{person.prefFirstName}</strong></span>}
-          secondary={<span>Entered on {person.dateModified} by <strong>{person.firstName} {person.lastName}</strong></span>}
-        />
-      </ListItem>
+      <ListItemText
+        primary={<span><strong>{person.prefFirstName}</strong></span>}
+        secondary={<span>Entered on {person.dateModified} by <strong>{person.firstName} {person.lastName}</strong></span>}
+      />
     )
   }
 
   return (
-    <List className={classes.root} subheader={<li />}>
-      <li>
-        {mockJson.map((person, index) => (
-          <ul key={index} className={classes.ul}>
-            {renderPerson(person, index)}
-          </ul>
-        ))}
-      </li>
+    <List className={classes.root}>
+      {mockJson.map((person, index) => (
+        <ListItem key={index}>
+          <ListItemAvatar>
+            <Avatar>
+            <PersonIcon />
+            </Avatar>
+          </ListItemAvatar>
+          {renderListItemText(person)}
+        </ListItem>
+      ))}
     </List>
   );
 }
