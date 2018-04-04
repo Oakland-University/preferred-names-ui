@@ -14,7 +14,7 @@ const styles = theme => ({
     maxHeight: 480,
     overflow: 'auto',
   }
-});
+})
 
 function PrefNames(props) {
   const { classes } = props;
@@ -59,7 +59,7 @@ function PrefNames(props) {
   return (
     <List className={classes.root}>
       {mockJson.map((person, index) => (
-        <ListItem key={index}>
+        <ListItem className={classes.listItem} key={index}>
           <ListItemAvatar>
             <Avatar>
             <PersonIcon />
