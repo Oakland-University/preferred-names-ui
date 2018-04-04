@@ -11,7 +11,8 @@ import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
   root: {
-    maxHeight: 480
+    maxHeight: 480,
+    overflow: 'auto',
   }
 });
 
