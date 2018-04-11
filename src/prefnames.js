@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import List, {
   ListItem,
@@ -16,38 +16,32 @@ const styles = theme => ({
   }
 })
 
-function PrefNames(props) {
-  const { classes } = props;
+// Retrieve the list of preferred names as JSON.
+const getPersonList = async (url) => {
+  try {
+    const response = await fetch (url);
+    const data = await response.json();
+    return data;
+  }catch (err) {
+    console.error(err);
+    return null;
+  }
+}
 
-  // Mock JSON
-  var mockJson = [
-    {
-      "prefFirstName":"Mike",
-      "firstName":"Michael",
-      "lastName":"Scott",
-      "dateModified":"January 04, 2018"
-    },
-    {
-      "prefFirstName":"Andy",
-      "firstName":"Anderson",
-      "lastName":"Bernard",
-      "dateModified":"January 02, 2018"
-    },
-    {
-      "prefFirstName":"Pam",
-      "firstName":"Pamela",
-      "lastName":"Beesly",
-      "dateModified":"January 02, 2018"
-    },
-    {
-      "prefFirstName":"Jim",
-      "firstName":"James",
-      "lastName":"Halpert",
-      "dateModified":"January 01, 2018"
-    }
-  ]
+class PrefNames extends Component {
 
-  function renderListItemText(person) {
+  state = {
+    personList: null
+  }
+
+  // TODO: Set the correct URL of the preferred names JSON in production.
+  componentDidMount() {
+    getPersonList('http://SERVER:PORT/preferrednames/api/v1/getPersonList').then(data => {
+      this.setState({personList:data});
+    })
+  }
+
+  renderListItemText(person) {
     return (
       <ListItemText
         primary={<span><strong>{person.prefFirstName}</strong></span>}
@@ -56,20 +50,34 @@ function PrefNames(props) {
     )
   }
 
-  return (
-    <List className={classes.root}>
-      {mockJson.map((person, index) => (
-        <ListItem className={classes.listItem} key={index}>
-          <ListItemAvatar>
-            <Avatar>
-            <PersonIcon />
-            </Avatar>
-          </ListItemAvatar>
-          {renderListItemText(person)}
-        </ListItem>
-      ))}
-    </List>
-  );
+  render() {
+    const { classes } = this.props;
+    console.log(this.state.personList);
+    if (this.state.personList === null) {
+      return (
+        <div>An error occurred retrieving preferred name records.</div>
+      )
+    }else if (this.state.personList.length === 0) {
+      return (
+        <div>No students have entered a preferred name.</div>
+      )
+    }else{
+      return (
+        <List className={classes.root}>
+          {this.state.personList.map((person, index) => (
+            <ListItem className={classes.listItem} key={index}>
+              <ListItemAvatar>
+                <Avatar>
+                <PersonIcon />
+                </Avatar>
+              </ListItemAvatar>
+              {this.renderListItemText(person)}
+            </ListItem>
+          ))}
+        </List>
+      )
+    }
+  }
 }
 
 PrefNames.propTypes = {
