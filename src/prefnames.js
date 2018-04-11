@@ -17,14 +17,19 @@ const styles = theme => ({
 })
 
 // Retrieve the list of preferred names as JSON.
-const getPersonList = async (url) => {
+const getPersonList = async (url, token) => {
   try {
-    const response = await fetch (url);
-    const data = await response.json();
-    return data;
-  }catch (err) {
-    console.error(err);
-    return null;
+    let response = await fetch(url, {
+      credentials: 'include',
+      headers: { Authorization: 'Bearer ' + token }
+    })
+
+    let personList = await response.json()
+    return personList
+
+  } catch (err) {
+    console.error(err)
+    return null
   }
 }
 
@@ -35,10 +40,12 @@ class PrefNames extends Component {
   }
 
   // TODO: Set the correct URL of the preferred names JSON in production.
-  componentDidMount() {
-    getPersonList('http://SERVER:PORT/preferrednames/api/v1/getPersonList').then(data => {
-      this.setState({personList:data});
-    })
+  async componentDidMount() {
+    let personList = await getPersonList(
+      'http://SERVER:PORT/preferrednames/api/v1/getPersonList',
+      this.props.token
+    )
+    this.setState({personList})
   }
 
   renderListItemText(person) {

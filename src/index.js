@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import PrefNames from './prefnames';
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+
+// Do not delete. This is required to authenticate the view in uPortal.
+/* global token */
 
 const theme = createMuiTheme({
     typography: {
@@ -13,7 +16,7 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
-        <PrefNames />
+        <PrefNames token={token} />
     </MuiThemeProvider>,
     document.querySelector('#root')
 );
