@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import List, {
   ListItem,
   ListItemAvatar,
   ListItemText,
-} from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import PersonIcon from 'material-ui-icons/Person';
-import { withStyles } from 'material-ui/styles';
+} from 'material-ui/List'
+import Avatar from 'material-ui/Avatar'
+import PersonIcon from 'material-ui-icons/Person'
+import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
   root: {
@@ -58,7 +58,7 @@ class PrefNames extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
     if (this.state.personList === null) {
       return (
         <div>An error occurred retrieving preferred name records.</div>
@@ -88,6 +88,6 @@ class PrefNames extends Component {
 
 PrefNames.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(PrefNames);
+export default withStyles(styles)(PrefNames)

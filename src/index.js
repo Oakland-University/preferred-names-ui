@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import PrefNames from './prefnames';
+import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
+import PrefNames from './prefnames'
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
@@ -19,4 +19,4 @@ ReactDOM.render(
         <PrefNames token={token} />
     </MuiThemeProvider>,
     document.querySelector('#root')
-);
+)
