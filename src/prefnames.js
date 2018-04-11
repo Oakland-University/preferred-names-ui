@@ -52,7 +52,6 @@ class PrefNames extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state.personList);
     if (this.state.personList === null) {
       return (
         <div>An error occurred retrieving preferred name records.</div>

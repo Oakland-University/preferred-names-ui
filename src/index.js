@@ -10,7 +10,8 @@ const theme = createMuiTheme({
         fontSize: '16px'
     }
 })
-    ReactDOM.render(
+
+ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <PrefNames />
     </MuiThemeProvider>,
