@@ -18,5 +18,5 @@ ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <PrefNames token={token} />
     </MuiThemeProvider>,
-    document.querySelector('#root')
+    document.querySelector('#preferrednames-root')
 )
