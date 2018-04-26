@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "material-ui": "next",
-    "material-ui-icons": "latest",
+    "@material-ui/icons": "latest",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

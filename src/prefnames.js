@@ -6,7 +6,7 @@ import List, {
   ListItemText,
 } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
-import PersonIcon from 'material-ui-icons/Person'
+import PersonIcon from '@material-ui/icons/Person'
 import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
