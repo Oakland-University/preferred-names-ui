@@ -39,10 +39,9 @@ class PrefNames extends Component {
     personList: null
   }
 
-  // TODO: Set the correct URL of the preferred names JSON in production.
   async componentDidMount() {
     let personList = await getPersonList(
-      'http://SERVER:PORT/preferrednames/api/v1/getPersonList',
+      'https://mysail.oakland.edu/preferrednames/api/v1/getPersonList',
       this.props.token
     )
     this.setState({personList})
