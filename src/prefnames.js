@@ -41,7 +41,7 @@ class PrefNames extends Component {
 
   async componentDidMount() {
     let personList = await getPersonList(
-      'https://mysail.oakland.edu/preferrednames/api/v1/getPersonList',
+      '/preferrednames/api/v1/getPersonList',
       this.props.token
     )
     this.setState({personList})
